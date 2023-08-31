@@ -17,8 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from stands.views import index,reserva_criar,reserva_editar,reserva_remover,reserva
-from . import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +25,4 @@ urlpatterns = [
     path('reserva/',reserva_criar,name='reserva_criar'),
     path('reserva/editar/<int:id>/',reserva_editar, name='reserva_editar'),
     path('reserva/remover/<int:id>/',reserva_remover,name='reserva_remover'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

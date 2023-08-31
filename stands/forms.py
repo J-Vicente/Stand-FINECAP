@@ -11,6 +11,6 @@ class ReservaForm(ModelForm):
             'cnpj' : forms.TextInput(attrs={'class': 'form-control' }),
             'nome_empresa' : forms.TextInput(attrs={'class': 'form-control' }),
             'categoria' : forms.TextInput(attrs={'class': 'form-control' }),
-            'valor' : forms.NumberInput(attrs={'class': 'form-control' }),  
-
+            'quitado' : forms.CheckboxInput(attrs={'class': 'form-control' }),  
+            'stand' : forms.TextInput(attrs={'class': 'form-contrl'}),
         }

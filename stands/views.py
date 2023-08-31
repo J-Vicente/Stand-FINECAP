@@ -45,7 +45,7 @@ def reserva_criar(request):
     return render(request, "reserva/form_reserva.html", {'form': form})
 
 
-def product(request, id):
+def reserva(request, id):
     reserva = get_object_or_404(Reserva,id=id)
     context ={
         'reserva':reserva
