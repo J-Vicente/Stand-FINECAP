@@ -19,7 +19,7 @@ def reserva_editar(request,id):
         form = ReservaForm(request.POST,request.FILES,instance=reserva)
         if form.is_valid():
             form.save()
-            return redirect('reserva_listar')
+            return redirect('index')
     else:
         form = ReservaForm(instance=reserva)
 
@@ -29,7 +29,7 @@ def reserva_editar(request,id):
 def reserva_remover(request, id):
     reserva = get_object_or_404(Reserva, id=id)
     reserva.delete()
-    return redirect('reserva_listar') 
+    return redirect('index') 
 
 
 def reserva_criar(request):
@@ -38,7 +38,7 @@ def reserva_criar(request):
         if form.is_valid():
             form.save()
             form = ReservaForm()
-            return redirect('reserva_listar')
+            return redirect('index')
     else:
         form = ReservaForm()
 
@@ -47,7 +47,11 @@ def reserva_criar(request):
 
 def reserva(request, id):
     reserva = get_object_or_404(Reserva,id=id)
+    if reserva.quitado == True:
+        reserva.quitado = 'Sim'
+    else:
+        reserva.quitado = 'Não'
     context ={
         'reserva':reserva
     }
-    return render(request, "reserva/product.html",context)
+    return render(request, "reserva/reserva.html",context)

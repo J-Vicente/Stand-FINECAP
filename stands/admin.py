@@ -3,4 +3,4 @@ from .models import Stand
 
 @admin.register(Stand)
 class StandAdmin(admin.ModelAdmin):
-    list_display = ('localizacao', 'valor')
+    list_display = ('id', 'localizacao', 'valor')

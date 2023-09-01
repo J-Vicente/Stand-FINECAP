@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card" style="width: 50rem;" f>
+        <div class="card-body">
+
+        <h5 class="card-title" style="font-size: 5rem;">{{ reserva.nome_empresa }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary" style="font-size: 2rem;">CNPJ: {{ reserva.cnpj }}</h6>
+        
+        <h6 class="card-text" style="font-size: 2rem; margin-top: 3rem;">Categoria</h6>
+        <p class="card-text" style="font-size: 2rem; margin-bottom: 2rem;">{{ reserva.categoria }}</p>
+        
+        <h6 class="card-text" style="font-size: 2rem;">Localização do stand</h6>
+        <p class="card-text" style="font-size: 2rem; margin-bottom: 2rem;">{{ reserva.stand }}</p>
+        
+        <h6 class="card-text" style="font-size: 2rem;">Quitado</h6>
+        <p class="card-text" style="font-size: 2rem; margin-bottom: 2rem;">{{ reserva.quitado }}</p>
+       
+    </div>
+    </div>
+{% endblock %}
