@@ -5,7 +5,7 @@ from .forms import ReservaForm
 # Create your views here.
 
 def index(request):
-    reserva = Reserva.objects.all()
+    reserva = Reserva.objects.all().order_by('data')
     context = {
         'reserva' : reserva
     }
