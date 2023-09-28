@@ -1,13 +1,15 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Reserva
 from .forms import ReservaForm
+from .filters import ReservaFilter
 
 # Create your views here.
 
 def index(request):
     reserva = Reserva.objects.all().order_by('data')
+    filter = ReservaFilter(request.GET, queryset=Reserva.objects.all())
     context = {
-        'reserva' : reserva
+        'reserva' : reserva, 'filter' : filter
     }
     return render(request, 'reserva/index.html',context)
 

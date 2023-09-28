@@ -1,7 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for i in reserva %}
-    <div class="card" style="margin-bottom: 30px;">
+
+    <form class="d-flex" method="get">
+      {{ filter.form.as_p }}
+      <input type="submit" />
+    </form>
+    {% for i in filter.qs %}
+      <div class="card" style="margin-bottom: 30px;">
+        <div class="card-body">
+          <h5 class="card-title">{{ i.nome_empresa }}</h5>
+          <p class="card-text">{{ i.categoria }}</p>
+          <p class="card-text">{{ i.stand }}</p>
+          <p class="card-text">{{ i.data }}</p>
+          <a href="{% url 'reserva' i.id %}" class="btn btn-primary">Detalhar</a>
+          <a href="{% url 'reserva_editar' i.id %}" class="btn btn-primary">Editar</a>
+          <a href="{% url 'reserva_remover' i.id %}" class="btn btn-danger">Remover</a>
+        </div>
+      </div>
+    {% endfor %}
+
+    <!-- {% for i in reserva %}
+      <div class="card" style="margin-bottom: 30px;">
         <div class="card-body">
           <h5 class="card-title">{{ i.nome_empresa }}</h5>
           <p class="card-text">{{ i.categoria }}</p>
@@ -12,5 +31,5 @@
           <a href="{% url 'reserva_remover' i.id %}" class="btn btn-danger">Remover</a>
         </div>
       </div>    
-    {% endfor %}
+    {% endfor %} -->
 {%endblock%}
