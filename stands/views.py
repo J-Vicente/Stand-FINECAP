@@ -2,14 +2,18 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Reserva
 from .forms import ReservaForm
 from .filters import ReservaFilter
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def index(request):
     reserva = Reserva.objects.all().order_by('data')
     filter = ReservaFilter(request.GET, queryset=Reserva.objects.all())
+    paginator = Paginator(reserva, 5)
+    page = request.GET.get('page')
+    pag_obj = paginator.get_page(page)
     context = {
-        'reserva' : reserva, 'filter' : filter
+        'reserva' : reserva, 'filter' : filter, 'pag_obj' : pag_obj
     }
     return render(request, 'reserva/index.html',context)
 
