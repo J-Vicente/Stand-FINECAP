@@ -3,9 +3,9 @@ from .models import Reserva
 from .forms import ReservaForm
 from .filters import ReservaFilter
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
+@login_required
 def index(request):
     reserva = Reserva.objects.all().order_by('data')
     filter = ReservaFilter(request.GET, queryset=Reserva.objects.all())
@@ -17,7 +17,7 @@ def index(request):
     }
     return render(request, 'reserva/index.html',context)
 
-
+@login_required
 def reserva_editar(request,id):
     reserva = get_object_or_404(Reserva,id=id)  
    
@@ -31,13 +31,13 @@ def reserva_editar(request,id):
 
     return render(request,'reserva/form_reserva.html',{'form':form})
 
-
+@login_required
 def reserva_remover(request, id):
     reserva = get_object_or_404(Reserva, id=id)
     reserva.delete()
     return redirect('index') 
 
-
+@login_required
 def reserva_criar(request):
     if request.method == 'POST':
         form = ReservaForm(request.POST,request.FILES)
@@ -50,7 +50,7 @@ def reserva_criar(request):
 
     return render(request, "reserva/form_reserva.html", {'form': form})
 
-
+@login_required
 def reserva(request, id):
     reserva = get_object_or_404(Reserva,id=id)
     if reserva.quitado == True:
